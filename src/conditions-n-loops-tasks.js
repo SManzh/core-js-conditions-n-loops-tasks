@@ -139,8 +139,6 @@ function convertToRomanNumerals(/* num */) {
  */
 function convertNumberToString(numberStr) {
   let finalStr = '';
-  const arr = numberStr
-  numberStr.toArr
   for (let i = 0; i < numberStr.length; i += 1) {
     switch (numberStr.charAt(i)) {
       case '-':
