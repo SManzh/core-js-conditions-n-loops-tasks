@@ -21,8 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +41,17 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a >= b) {
+    if (a >= c) {
+      return a;
+    }
+    return c;
+  }
+  if (b >= c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -82,8 +94,14 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a + b <= c || a + c <= a || c + b <= a) {
+    return false;
+  }
+  if (a === b || a === c || b === c) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -119,8 +137,54 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let finalStr = '';
+  const arr = numberStr
+  numberStr.toArr
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr.charAt(i)) {
+      case '-':
+        finalStr += 'minus';
+        break;
+      case '0':
+        finalStr += 'zero';
+        break;
+      case '1':
+        finalStr += 'one';
+        break;
+      case '2':
+        finalStr += 'two';
+        break;
+      case '3':
+        finalStr += 'three';
+        break;
+      case '4':
+        finalStr += 'four';
+        break;
+      case '5':
+        finalStr += 'five';
+        break;
+      case '6':
+        finalStr += 'six';
+        break;
+      case '7':
+        finalStr += 'seven';
+        break;
+      case '8':
+        finalStr += 'eight';
+        break;
+      case '9':
+        finalStr += 'nine';
+        break;
+      default:
+        finalStr += 'point';
+        break;
+    }
+    if (i !== numberStr.length - 1) {
+      finalStr += ' ';
+    }
+  }
+  return finalStr;
 }
 
 /**
