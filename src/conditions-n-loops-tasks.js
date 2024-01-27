@@ -340,8 +340,26 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  if (arr.length < 3) {
+    return -1;
+  }
+  let sumLeft = arr[0];
+  let sumRight = arr[arr.length - 1];
+  for (let i = 1; i < arr.length - 1; i += 1) {
+    for (let x = 1; x < i; x += 1) {
+      sumLeft += arr[x];
+    }
+    for (let y = i + 1; y < arr.length - 1; y += 1) {
+      sumRight += arr[y];
+    }
+    if (sumLeft === sumRight) {
+      return i;
+    }
+    sumLeft = 0 + arr[0];
+    sumRight = 0 + arr[arr.length - 1];
+  }
+  return -1;
 }
 
 /**
@@ -402,8 +420,21 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const number1 = arr;
+  let i = 0;
+  let a = 0;
+  let j = 0;
+  for (j = 0; j < number1.length - 1; j += 1) {
+    for (i = 0; i < number1.length - 1; i += 1) {
+      if (number1[i] > number1[i + 1]) {
+        a = number1[i];
+        number1[i] = number1[i + 1];
+        number1[i + 1] = a;
+      }
+    }
+  }
+  return number1;
 }
 
 /**
@@ -423,8 +454,8 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  for (let i = 0)
 }
 
 /**
