@@ -402,8 +402,15 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const startValue = JSON.parse(JSON.stringify(matrix));
+  const matrixResult = matrix;
+  for (let i = 0; i < matrixResult.length; i += 1) {
+    for (let j = 0; j < matrixResult[i].length; j += 1) {
+      matrixResult[j][matrixResult.length - 1 - i] = startValue[i][j];
+    }
+  }
+  return matrix;
 }
 
 /**
@@ -454,8 +461,27 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let result = [...str];
+  let iterationToStart = iterations;
+  for (let i = 0; i < iterationToStart; i += 1) {
+    const odd = [];
+    let oddI = 0;
+    const even = [];
+    let evenI = 0;
+    for (let element = 0; element < str.length; element += 2) {
+      even[evenI] = result[element];
+      odd[oddI] = result[element + 1];
+      evenI += 1;
+      oddI += 1;
+    }
+    result = [...even, ...odd];
+    if (String(result).replace(/[\s.,%]/g, '') === str) {
+      iterationToStart = iterations % (i + 1);
+      i = -1;
+    }
+  }
+  return String(result).replace(/[\s.,%]/g, '');
 }
 
 /**
@@ -475,8 +501,33 @@ function shuffleChar(/* str, iterations */) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
+function getNearestBigger(number) {
+  const str = `${number}`;
+  const arr = [];
+  for (let i = 0; i < str.length; i += 1) {
+    arr[i] = str[i];
+  }
+  for (let i = arr.length - 1; i >= 0; i -= 1) {
+    if (+arr[i] !== 0) {
+      if (+arr[i - 1] < +arr[i]) {
+        let min = +arr[i];
+        for (let j = i; j < arr.length; j += 1) {
+          if (+arr[j] < min && +arr[j] > +arr[i - 1]) min = +arr[j];
+        }
+        let swapItemIndex;
+        for (let k = 0; k < arr.length; k += 1) {
+          if (arr[k] === `${min}`) swapItemIndex = k;
+        }
+        const temp = arr[swapItemIndex];
+        arr[swapItemIndex] = arr[i - 1];
+        arr[i - 1] = temp;
+        const right = arr.splice(i).sort().join('');
+        const left = arr.join('');
+        return Number(left + right);
+      }
+    }
+  }
+  return number;
 }
 
 module.exports = {
